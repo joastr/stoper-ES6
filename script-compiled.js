@@ -79,7 +79,14 @@ var Stopwatch = function () {
             var element = document.createElement('LI');
             var dataText = document.createTextNode(data);
             element.appendChild(dataText);
-            document.querySelector('.results').appendChild.element;
+            document.querySelector('.results').appendChild(element);
+        }
+    }, {
+        key: 'resetTimeList',
+        value: function resetTimeList() {
+            var elem = document.querySelector('.results');
+            var element = document.getElementsByTagName('LI');
+            elem.parentNode.removeChild(element);
         }
     }]);
 
@@ -112,13 +119,15 @@ resetButton.addEventListener('click', function () {
 });
 
 var timeListButton = document.getElementById('timeListButton');
-var timeList = document.querySelector('.results');
 
-console.log(timeList);
 console.log('button', timeListButton);
 timeListButton.addEventListener('click', function () {
     return stopwatch.save();
 });
+
+//let resetList = document.querySelector('#resetList');
+//resetList.addEventListener('click', () => stopwatch.resetTimeList());
+
 
 // timeListButton.addEventListener('click', () => 
 // {

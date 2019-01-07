@@ -15,6 +15,13 @@ nav {
     text-align: center
 }
 
+li {
+    width: 100px;
+    margin: 20px auto;
+    font-family: lato, sans-serif;
+    font-weight: bold;
+}
+
 .stopwatch {
     font-family: lato, sans-serif;
     font-size: 2em;
@@ -54,4 +61,8 @@ nav {
 
 .lighter:hover, .light:hover, .normal:hover, .dark:hover  {
     background-color:#ff4f19;
+}
+
+.darker {
+    background-color: #e73802
 }

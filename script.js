@@ -58,8 +58,14 @@ class Stopwatch {
         const element = document.createElement('LI');
         let dataText = document.createTextNode(data);
         element.appendChild(dataText);
-        document.querySelector('.results').appendChild.element
+        document.querySelector('.results').appendChild(element);
 
+    }
+
+    resetTimeList() {
+        let elem = document.querySelector('.results');
+        let element = document.getElementsByTagName('LI')
+        elem.parentNode.removeChild(element);
     }
     
 }
@@ -86,11 +92,15 @@ let resetButton = document.getElementById('reset');
 resetButton.addEventListener('click', () => stopwatch.reset());
 
 let timeListButton = document.getElementById('timeListButton');
-let timeList = document.querySelector('.results');
 
-console.log(timeList);
-console.log('button',timeListButton)
+
+console.log('button',timeListButton);
 timeListButton.addEventListener('click', () => stopwatch.save());
+
+//let resetList = document.querySelector('#resetList');
+//resetList.addEventListener('click', () => stopwatch.resetTimeList());
+
+
 
 
 // timeListButton.addEventListener('click', () => 
