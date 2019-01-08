@@ -1,17 +1,24 @@
-class Stopwatch {
-    constructor(display) {
+class Stopwatch extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            times: {
+                minutes: 0,
+                seconds: 0,
+                miliseconds: 0
+            }
+        };
         this.running = false;
-        this.display = display;
-        this.reset();
-        this.print(this.times);
     }
 
     reset() {
-        this.times = {
+        this.setState ({
+            times: {
             minutes: 0,
             seconds: 0,
             miliseconds: 0
-        };
+            }
+        });
         this.print();
     }
 
@@ -37,6 +44,7 @@ class Stopwatch {
     }
 
     calculate() {
+        const times = this.state.times;
         this.times.miliseconds += 1;
         if (this.times.miliseconds >= 100) {
             this.times.seconds += 1;
@@ -46,6 +54,7 @@ class Stopwatch {
             this.times.minutes += 1;
             this.times.seconds = 0;
         }
+        this.setState({times});
     }
 
     stop() {
@@ -62,13 +71,42 @@ class Stopwatch {
 
     }
 
-    resetTimeList() {
-        let elem = document.querySelector('.results');
-        let element = document.getElementsByTagName('LI')
-        elem.parentNode.removeChild(element);
+    resetTimeList() {      
+        let el = document.querySelector('li');
+        el.remove();        
     }
-    
+
+    render() {
+        
+        return (
+          <div className="container">
+            <nav className="controls">
+                <a className="button dark" href="#" onClick={()=>this.start}>
+                    Start
+                </a>
+                <a className="button normal" href="#" onClick={()=>this.stop}> 
+                    Stop 
+                </a>
+                <a className="button light" href="#" onClick={()=>this.reset}>
+                    Reset
+                </a>
+                <a className="button lighter" href="#" onClick={()=>this.save}>
+                    Save results
+                </a>
+                <a className="button darker" href="#" onClick={()=>this.resetTimeList}>
+                    Clean results
+                </a>
+            </nav>
+            {this.format(this.state.times)}
+            <div className="stopwatch">{this.format()}</div>
+            <ul className="results"></ul>
+           
+          </div>
+        );
+      }
 }
+    
+
 
 function pad0(value) {
     let result = value.toString();
@@ -79,26 +117,31 @@ function pad0(value) {
 }
 
 
-const stopwatch = new Stopwatch(
-document.querySelector('.stopwatch'));
-
-let startButton = document.getElementById('start');
-startButton.addEventListener('click', () => stopwatch.start());
-
-let stopButton = document.getElementById('stop');
-stopButton.addEventListener('click', () => stopwatch.stop());
-
-let resetButton = document.getElementById('reset');
-resetButton.addEventListener('click', () => stopwatch.reset());
-
-let timeListButton = document.getElementById('timeListButton');
+const app = docunet.getElementById('app')
+ReactDOM.render(<Stpowatch/>, app);
 
 
-console.log('button',timeListButton);
-timeListButton.addEventListener('click', () => stopwatch.save());
 
-//let resetList = document.querySelector('#resetList');
-//resetList.addEventListener('click', () => stopwatch.resetTimeList());
+// const stopwatch = new Stopwatch(
+// document.querySelector('.stopwatch'));
+
+// let startButton = document.getElementById('start');
+// startButton.addEventListener('click', () => stopwatch.start());
+
+// let stopButton = document.getElementById('stop');
+// stopButton.addEventListener('click', () => stopwatch.stop());
+
+// let resetButton = document.getElementById('reset');
+// resetButton.addEventListener('click', () => stopwatch.reset());
+
+// let timeListButton = document.getElementById('timeListButton');
+
+
+// console.log('button',timeListButton);
+// timeListButton.addEventListener('click', () => stopwatch.save());
+
+// let resetList = document.querySelector('#resetList');
+// resetList.addEventListener('click', () => stopwatch.resetTimeList());
 
 
 
@@ -109,6 +152,6 @@ timeListButton.addEventListener('click', () => stopwatch.save());
 //     const element = document.createElement('LI');
 //     let dataText = document.createTextNode(data);
 //     element.appendChild(dataText);
-//     document.querySelector('.results').appendChild.element
+//     document.querySelector('.results').appendChild(element);
 // });
 
