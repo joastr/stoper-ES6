@@ -40,7 +40,7 @@ class Stopwatch extends React.Component {
     step() {
         if (!this.running) return;
         this.calculate();
-        this.print();
+        
     }
 
     calculate() {
@@ -97,9 +97,12 @@ class Stopwatch extends React.Component {
                     Clean results
                 </a>
             </nav>
+            <div className="stopwatch">
             {this.format(this.state.times)}
-            <div className="stopwatch">{this.format()}</div>
-            <ul className="results"></ul>
+            </div>
+            <div className="results"></div>
+           
+            
            
           </div>
         );
@@ -117,8 +120,8 @@ function pad0(value) {
 }
 
 
-const app = docunet.getElementById('app')
-ReactDOM.render(<Stpowatch/>, app);
+const app = document.getElementById('app')
+ReactDOM.render(<Stopwatch/>, app);
 
 
 
