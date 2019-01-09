@@ -9,6 +9,11 @@ class Stopwatch extends React.Component {
             }
         };
         this.running = false;
+        this.start = this.start.bind(this);
+        this.stop = this.stop.bind(this); 
+        this.reset = this.reset.bind(this);
+        this.save = this.save.bind(this); 
+        this.resetTimeList= this.resetTimeList.bind(this);
     }
 
     reset() {
@@ -23,7 +28,7 @@ class Stopwatch extends React.Component {
     }
 
     print() {
-        this.display.innerText = this.format(this.times);
+       // this.display.innerText = this.format(this.times);
     }
 
     format(times) {
@@ -43,16 +48,18 @@ class Stopwatch extends React.Component {
         
     }
 
+   
+
     calculate() {
         const times = this.state.times;
-        this.times.miliseconds += 1;
-        if (this.times.miliseconds >= 100) {
-            this.times.seconds += 1;
-            this.times.miliseconds = 0;
+        times.miliseconds += 1;
+        if (times.miliseconds >= 100) {
+            times.seconds += 1;
+            times.miliseconds = 0;
         }
-        if (this.times.seconds >= 60) {
-            this.times.minutes += 1;
-            this.times.seconds = 0;
+        if (times.seconds >= 60) {
+            times.minutes += 1;
+            times.seconds = 0;
         }
         this.setState({times});
     }
@@ -81,19 +88,19 @@ class Stopwatch extends React.Component {
         return (
           <div className="container">
             <nav className="controls">
-                <a className="button dark" href="#" onClick={()=>this.start}>
+                <a className="button dark" href="#" onClick={this.start}>
                     Start
                 </a>
-                <a className="button normal" href="#" onClick={()=>this.stop}> 
+                <a className="button normal" href="#" onClick={this.stop}> 
                     Stop 
                 </a>
-                <a className="button light" href="#" onClick={()=>this.reset}>
+                <a className="button light" href="#" onClick={this.reset}>
                     Reset
                 </a>
-                <a className="button lighter" href="#" onClick={()=>this.save}>
+                <a className="button lighter" href="#" onClick={this.save}>
                     Save results
                 </a>
-                <a className="button darker" href="#" onClick={()=>this.resetTimeList}>
+                <a className="button darker" href="#" onClick={this.resetTimeList}>
                     Clean results
                 </a>
             </nav>
